@@ -1,30 +1,19 @@
+n, k = map(int, input().split())
 
-def bag(idx,weight):
-    global memo
+thing = [[0,0]]
+d = [[0]*(k+1) for _ in range(n+1)]
 
-    if idx == N:
-        return 0
-    
-    if (idx,weight) in memo:
-        return memo[(idx,weight)]
+for i in range(n):
+    thing.append(list(map(int, input().split())))
 
-    res = bag(idx+1,weight)
+for i in range(1, n+1):
+    for j in range(1, k+1):
+        w = thing[i][0]
+        v = thing[i][1]
 
-    if weight + items[idx][0] <= K:
-        res = max(res,items[idx][1] + bag(idx+1,weight + items[idx][0]))
-    
-    memo[(idx,weight)] = res
-    return res
-    
+        if j < w:
+            d[i][j] = d[i-1][j]
+        else:
+            d[i][j] = max(d[i-1][j], d[i-1][j-w]+v)
 
-N,K = map(int,input().split())
-items = [() for _ in range(N)]
-
-for i in range(N):
-    a,b = map(int,input().split())
-    items[i] = (a,b)
-
-answer = 0
-memo = {}
-
-print(bag(0,0))
+print(d[n][k])
