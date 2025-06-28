@@ -3,6 +3,8 @@
 from collections import deque
 
 def solution(maps):
+    answer = -1
+    
     queue = deque()
     m = len(maps)
     n = len(maps[0])
@@ -27,11 +29,8 @@ def solution(maps):
                     queue.append((nx,ny))
                     visited[nx][ny] = 1
                     maps[nx][ny] = maps[x][y] + 1
-                    
                 
-    if maps[m-1][n-1] == 1:
-        answer = -1
-        return answer
     answer = maps[m-1][n-1]
-    
+    if answer == 1:
+        return -1
     return answer
