@@ -1,11 +1,13 @@
 A = int(input())
 B = int(input())
 C = int(input())
-result = list(str(A*B*C))
+howmany = [0]*10
+num = str(A*B*C)
 
-for i in range(0,10): 
-    count = 0
-    for num in result:
-        if i == int(num):
-            count += 1
-    print(count)
+for i in range(len(num)):
+    for j in range(0,10):
+        if int(num[i]) == j:
+            howmany[j] += 1
+
+for i in range(len(howmany)):
+    print(howmany[i])
