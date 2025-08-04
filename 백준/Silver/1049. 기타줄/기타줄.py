@@ -1,21 +1,19 @@
-n,m = map(int,input().split())
+N,M = map(int,input().split())
 
-s = list()
-o = list()
+p = []
+s = []
 
-for _ in range(m):
-    a,b = input().split(' ')
-    s.append(int(a))
-    o.append(int(b))
+for _ in range(M):
+    a,b = map(int,input().split())
+    p.append(a)
+    s.append(b)
 
-s = min(s)
-o = min(o)
+money,money2,money3 = 0,0,0
 
-if s < o * 6:
-    if s < (n % 6) * o:
-        print((n // 6) * s + s)
-    else:
-        print((n // 6) * s + (n % 6) * o)
+money += (min(s)*(N%6))+(min(p)*(N//6))
 
-elif s >= o * 6:
-    print(n * o)
+money2 += min(p)*((N//6)+1)
+
+money3 += min(s)*N
+
+print(min(money,money2,money3))
